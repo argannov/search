@@ -1,0 +1,19 @@
+#input.header-search{
+
+}
+.search_result {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    background: white;
+    padding: 10px 10px;
+}
+.block_result_search img {
+    width: 100%;
+}
+
+.like{
+    padding: 0px;
+    margin: 5px 0px;
+}
+

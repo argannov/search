@@ -7,8 +7,9 @@
     <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../js/script.js"></script>
+    <script src="../js/like.js"></script>
 </head>
 
 <body>
@@ -36,13 +37,51 @@
                         </ul>
                         <form class="navbar-form navbar-left" role="search" id="search_form">
                             <div class="form-group">
-                                <input type="text" name="referal" placeholder="Живой поиск" value="" class="who" autocomplete="off">
-                                <div class="search_result"></div>
+                                <input type="search" name="search_input" id="input" onkeyup="zapros()" class="form-control header-search">
+                                <div class="result-search hidden"></div>
                             </div>
                             <button type="submit" class="btn btn-primary">Найти</button>
                         </form>
+
                     </div><!-- /.navbar-collapse -->
                 </nav>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 block_result_search">
+                    <?php
+                    require_once 'bd.php'; // подключаем скрипт
+
+                    $url = $_SERVER["REQUEST_URI"];
+                    // выполняем операции с базой данных
+                    $query ="SELECT * from statii WHERE url='$url'";
+                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+                    while($row = mysqli_fetch_array($result))
+                    {?>
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+                        <? echo "<img src=".$row['image'].">"; ?>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
+                        <? echo "<h1>".$row['title_statii']."</h1>"; ?>
+
+                    </div>
+
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 hidden-xs"></div>
+
+                    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
+                        <? echo "".$row['content'].""; ?><br>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 like">
+                           <button id="like" onclick="like()">
+                            <i class="glyphicon glyphicon-heart" aria-hidden="true"></i></button>
+                            <? echo "".$row['like'].""; ?>
+                        </div>
+                    </div>
+                    <?}
+                    ?>
+                </div>
+
             </div>
         </div>
     </div>

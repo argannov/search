@@ -16,4 +16,12 @@
     padding: 0px;
     margin: 5px 0px;
 }
+.block-news {
 
+}
+.block-news img {
+    width: 100%;
+}
+.block-news-content {
+    height: 480px;
+}

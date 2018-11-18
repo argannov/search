@@ -1,8 +1,5 @@
-function like() {
-    $.ajax({
-            type: 'post',
-            url: "php/add_like.php", //Путь к обработчику
-            type: 'json',
-            data: $('#addlike').serialize()
-       })
-}
+if ($('#likepost').bind('click', function(){
+    $('#likes').remove();
+    $('#likes').load();
+}));
+
